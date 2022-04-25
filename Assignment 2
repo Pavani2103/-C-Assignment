@@ -1,0 +1,262 @@
+program 1:(Arrays)
+........
+//Manju C# Assignment OOPS Arrays
+using System;
+
+
+namespace arraysProgram
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            String[] StringArray1 = { ".NET", "MVC", "REACT", "NODEJS", "ANGULAR" };
+            int[] IntArray2 = new int[6];
+            String[] StringArray2 = new String[5];
+            int[] IntArray1 = { 10, 2, 5, 40, 11, 67 };
+
+            Console.WriteLine("Select operation you want to perform on arrays");
+            Console.WriteLine("Press 1 for -> Copying");
+            Console.WriteLine("Press 2 for -> Sorting");
+            Console.WriteLine("Press 3 for -> Reverse");
+            Console.WriteLine("Press 4 for -> Clear");
+            int operation =Convert.ToInt32(Console.ReadLine());
+            //Takes input value and perform switch operation
+            switch(operation)
+            {
+                case 1:
+                    {
+                        IntArray1.CopyTo(IntArray2, 0);
+                        Console.WriteLine("Copy of first Array :");
+                        foreach (var item in IntArray2)
+                         {
+                             Console.WriteLine(item);
+                         }
+
+                        StringArray1.CopyTo(StringArray2, 0);
+                        Console.WriteLine("Copy of second Array :");
+                        foreach (var item in StringArray2)
+                        {
+                            Console.WriteLine(item);
+                        }
+
+                    }
+                    break;
+                case 2:
+                    {
+                        //Sorted arrays
+                        Array.Sort(IntArray1);
+                        Console.WriteLine("The 1st Sorted Array is :");
+                        foreach (var item in IntArray1)
+                        {
+                            Console.WriteLine(item);
+                        }
+
+                        Array.Sort(StringArray1);
+                        Console.WriteLine("The 2nd Sorted Array is :");
+                        foreach (var item in StringArray1)
+                        {
+                            Console.WriteLine(item);
+                        }
+                    }
+                    break ;
+                case 3:
+                    {
+                        //Reverse the array values
+                        Array.Reverse(IntArray1);
+                        Array.Reverse(StringArray1);
+                        Console.WriteLine("Reversed arrays are");
+                        Console.WriteLine("First reversed array");
+                        foreach(var item in IntArray1)
+                        {
+                            Console.WriteLine(item);
+                        }
+                        Console.WriteLine("Second reversed array");
+                        foreach (var item in StringArray1)
+                        {
+                            Console.WriteLine(item);
+                        }
+                    }
+                    break;
+                case 4:
+                    {
+                        Array.Clear(IntArray1);
+                        Array.Clear(StringArray1); 
+                        Console.WriteLine("Original arrays Cleared");
+                    }
+                    break;
+
+                default:
+                break ;
+            }
+        }
+    }
+}
+
+program 2:(EMP)
+.........
+using System;
+using System.Collections;
+
+
+namespace UsingCollections
+{
+    public static void Main()
+    {
+        Employee emp1 = new Employee();
+        Employee emp2 = new Employee();
+        Employee emp3 = new Employee();
+        Employee emp4 = new Employee();
+
+        ArrayList al = new ArrayList();          
+        al.Add(emp1);
+        al.Add(emp2);
+        al.Add(emp3);
+        al.Add(emp4);
+        
+        emp1.EmployeeDetails(101, "Pavan", 50000);
+        emp2.EmployeeDetails(102, "Kalyan", 650000);
+        emp3.EmployeeDetails(103, "Charan", 80500);
+        emp4.EmployeeDetails(104, "Kiran", 90000);
+        Console.WriteLine("there are {0} objects in arraylist",al.Count);
+        
+
+        foreach (var item in al)
+        {
+            Console.WriteLine();
+        }
+
+    }
+    public class Collections
+    {
+        public class Employee
+        {
+            private int EmpNo;
+            private string EmpName;
+            private double Salary;
+
+            public void EmployeeDetails(int empNo, string empName, double salary)
+            {
+                this.EmpNo = empNo;
+                this.EmpName = empName;
+                this.Salary = salary;
+                Console.WriteLine("Employee Number : {0} ", empNo);
+                Console.WriteLine("Employee Name : {0} ", empName);
+                Console.WriteLine("Employee Salary : {0} ", salary);
+
+            }
+        }
+
+    }
+}
+
+Program 3:(EMP interface)
+.........
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace sample
+{
+    internal class addemployee
+    {
+        static void Main()
+        {
+            List<string> list = new List<string>();
+            list.Add("Ramya");
+            list.Add("Anu");
+            list.Add("Charan");
+            list.Add("Kiran");
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.WriteLine("Employees" + ':' + list[i]);
+            }
+            Console.WriteLine("All Employees" + ':' + list.Count);
+            Console.ReadLine();
+        }
+    }
+}
+
+program 4:(stack)
+.........
+//C# assignment Manju
+using System;
+
+namespace StackOPerations
+{
+
+internal class Stacks
+    {
+        static void Main()
+        {
+            Stack stack1 = new Stack();
+            stack1.Push(1);
+            stack1.Push("Employee");
+            stack1.Push(67.2);
+            stack1.Push("pavani");
+            foreach (Object obj in stack1)
+            {
+                Console.WriteLine("different types of data" + ":" + obj);
+            }
+            stack1.Pop();
+            foreach (Object obj in stack1)
+            {
+                Console.WriteLine("after pop operation" + ":" + obj);
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
+
+program 5:(search)
+........using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Assignment_5
+{
+    internal class Search
+    {
+        static void Main()
+        {
+
+            //Adding list and values
+            List<string> list = new List<string>();
+            list.Add("Pavani");
+            list.Add("Ramya");
+            list.Add("Puja");
+            list.Add("Sri");
+
+
+
+            //Looping through list values and printing employees Name
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.WriteLine("List of employees" + ':' + list[i]);
+            }
+
+
+            Console.WriteLine("total number of employess" + ':' + list.Count);
+            Console.WriteLine("enter person name:");
+            string X = Console.ReadLine();
+            if (list.Contains(X))
+            {
+                Console.WriteLine("yes " + X + " is an employee");
+            }
+            else
+            {
+                Console.WriteLine("no");
+            }
+
+
+
+            Console.ReadLine();
+        }
+    }
+}
