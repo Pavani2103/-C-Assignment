@@ -1,0 +1,360 @@
+program 1 :(multicast delegates)
+................
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Assignment6
+{ 
+    public delegate void EmployeeDelegate();
+    public class MultiCastDelegate
+    {
+        
+        static void Main(string[] args)
+        {
+            Employee employee = new Employee();
+
+          
+            EmployeeDelegate employeeDelegate = new EmployeeDelegate(employee.Display);
+            employeeDelegate += employee.MarketingExecutiveDisplay;
+            employeeDelegate.Invoke();
+
+
+        }
+    }
+    public class Employee
+    {
+        private int empId,meId;
+        private string empName,meName;
+        private string companyName,meCompanyName;
+        private string designation,meDesignation;
+        private string workLocation,meWorkLocation;
+
+        
+
+        public Employee()
+        {
+            Console.Write("Enter the emp id : ");
+            this.empId =( Convert.ToInt32(Console.ReadLine()));
+            Console.Write("Enter the emp name : ");
+            this.empName = Console.ReadLine();
+
+            Console.Write("Enter the Company Name : ");
+            this.companyName = Console.ReadLine();
+
+            Console.Write("Enter the emp designation : ");
+            this.designation = Console.ReadLine();
+
+            Console.Write("Enter the emp WorkLocation : ");
+            this.workLocation = Console.ReadLine();
+
+            
+
+            Console.Write("Enter the MarketingExecutive id : ");
+            this.meId = (Convert.ToInt32(Console.ReadLine()));
+
+            Console.Write("Enter the MarketingExecutive name : ");
+            this.meName = Console.ReadLine();
+
+            Console.Write("Enter the MarketingExecutive Company Name : ");
+            this.meCompanyName = Console.ReadLine();
+
+            Console.Write("Enter the MarketingExecutive designation : ");
+            this.meDesignation = Console.ReadLine();
+
+            Console.Write("Enter the MarketingExecutive WorkLocation : ");
+            this.meWorkLocation = Console.ReadLine();
+
+        }
+
+        public void Display()
+        {
+            Console.WriteLine("Employee Details::::::::");
+            Console.WriteLine("Employee Id : {0}",empId);
+            Console.WriteLine("Employee Name : {0}",empName);
+            Console.WriteLine("Employee Company Name : {0}",companyName );
+
+            Console.WriteLine("Employee Designation : {0}",designation);
+
+            Console.WriteLine("Employee Work Location : {0}",workLocation);
+
+            
+        }
+        
+        public void MarketingExecutiveDisplay()
+        {
+            Console.WriteLine("MarketingExecutiveDetails:::::::::");
+            Console.WriteLine("MarketingExecutive Employee Id : {0}",meId );
+            Console.WriteLine("MarketingExecutive Employee Name : {0}", meName);
+            Console.WriteLine("MarketingExecutive Employee Company Name : {0}", meCompanyName);
+
+            Console.WriteLine("MarketingExecutive Employee Designation : {0}", meDesignation);
+
+            Console.WriteLine("MarketingExecutive Employee Work Location : {0}", meWorkLocation);
+        }
+
+
+    }
+}
+
+program 2 :(Account bal)
+............
+//C# Delegates Assignments
+//Pavani
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+namespace Delegates
+{
+    class BankAtm
+    {
+        static void Main(string[] args)
+        {
+            Account objAc = new Account();
+            Console.WriteLine("Press 1 for With Draw Amount \n Press 2 for Deposit Amount \n");
+            int input = Convert.ToInt32(Console.ReadLine());
+
+            switch(input)
+            { 
+                case 1:
+                {
+                    Console.WriteLine("You choosen With Draw Amount. \n Please Enter Amount to with draw");
+                    int balance = Convert.ToInt32(Console.ReadLine());
+                    objAc.UnderBalance += new delegatemethod(objAc.WithDraw);
+                    objAc.Insufficient(balance);
+                }
+                break;
+            case 2:
+                {
+                    Console.WriteLine("You choosen Deposit Amount. \n Please Enter Amount to Deposit");
+                    int dpbalance = Convert.ToInt32(Console.ReadLine());
+                    objAc.ZeroBalance += new delegatemethod(objAc.Deposit);
+                    objAc.DepositMoney(dpbalance);
+                }
+                break;
+                default:
+                    break;
+
+                
+                Console.ReadKey();
+            }
+        }
+        public delegate void delegatemethod(int x);
+        public class Account
+        {
+            public int AccountNumber { get; set; }
+            public int CustomerName { get; set; }
+            public int Balance = 1000;
+            public int WithDrawAmount { get; set; }
+            public event delegatemethod UnderBalance;
+            public event delegatemethod ZeroBalance;
+            public void Insufficient(int x)
+            {
+                UnderBalance(x);
+            }
+            public void DepositMoney(int y)
+            {
+                ZeroBalance(y);
+            }
+            public void WithDraw(int x)
+            {
+                if (x < Balance && Balance != 0)
+                {
+                    Console.WriteLine("Congratulations!!! Transaction Successfull");
+                    Console.WriteLine("Remaining Balance is :" + (Balance - x));
+                }
+                else if (x > Balance && Balance != 0)
+                {
+                    Console.WriteLine("Insufficient Amount");
+                    Console.WriteLine("Your Current Balance is " + Balance + " only");
+                }
+                else
+                {
+                    Console.WriteLine("Zero Balance :" + Balance);
+                }
+            }
+            public void Deposit(int x)
+            {
+                Console.Write("Balance After Depositing: " + (Balance + x));
+            }
+        }
+       
+    }
+}
+
+program 3 :(SBI bank)
+...........
+//C# Delegates Assignments
+//Pavani
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+namespace Delegates
+{
+    class SBIBankATM
+    {
+        static void Main(string[] args)
+        {
+            Account objSBIBank = new Account();
+            Console.WriteLine("Press 1 for With Draw Amount \n Press 2 for Deposit Amount \n");
+            int input = Convert.ToInt32(Console.ReadLine());
+
+            switch(input)
+            { 
+                case 1:
+                {
+                    Console.WriteLine("You choosen With Draw Amount. \n Please Enter Amount to with draw");
+                    int balance = Convert.ToInt32(Console.ReadLine());
+                    objSBIBank.UnderBalance += new delegatemethod(objSBIBank.WithDraw);
+                    objSBIBank.Insufficient(balance);
+                }
+                break;
+            case 2:
+                {
+                    Console.WriteLine("You choosen Deposit Amount. \n Please Enter Amount to Deposit");
+                    int dpbalance = Convert.ToInt32(Console.ReadLine());
+                    objSBIBank.ZeroBalance += new delegatemethod(objSBIBank.Deposit);
+                    objSBIBank.DepositMoney(dpbalance);
+                }
+                break;
+                default:
+                    break;
+
+                
+                Console.ReadKey();
+            }
+        }
+        public delegate void delegatemethod(int x);
+        public class Account
+        {
+            public int AccountNumber { get; set; }
+            public int CustomerName { get; set; }
+            public int Balance = 1000;
+            public int WithDrawAmount { get; set; }
+            public event delegatemethod UnderBalance;
+            public event delegatemethod ZeroBalance;
+            public void Insufficient(int x)
+            {
+                UnderBalance(x);
+            }
+            public void DepositMoney(int y)
+            {
+                ZeroBalance(y);
+            }
+            public void WithDraw(int x)
+            {
+                if (x < Balance && Balance != 0)
+                {
+                    Console.WriteLine("Congratulations!!! Transaction Successfull");
+                    Console.WriteLine("Remaining Balance is :" + (Balance - x));
+                }
+                else if (x > Balance && Balance != 0)
+                {
+                    Console.WriteLine("Transaction cannot be continued as balance is insufficient/zero in Account");
+                }
+                else
+                {
+                    Console.WriteLine("Zero Balance :" + Balance);
+                }
+            }
+            public void Deposit(int x)
+            {
+                Console.Write("Balance After Depositing: " + (Balance + x));
+            }
+        }
+       
+    }
+}
+
+Program 4 :(HDFC bank)
+...........
+
+//C# Delegates Assignments
+//Pavani
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+namespace Delegates
+{
+    class HDFCBankATM
+    {
+        static void Main(string[] args)
+        {
+            Account objIHDFCBank = new Account();
+            Console.WriteLine("Press 1 for With Draw Amount \n Press 2 for Deposit Amount \n");
+            int input = Convert.ToInt32(Console.ReadLine());
+
+            switch(input)
+            { 
+                case 1:
+                {
+                    Console.WriteLine("You choosen With Draw Amount. \n Please Enter Amount to with draw");
+                    int balance = Convert.ToInt32(Console.ReadLine());
+                    objIHDFCBank.UnderBalance += new delegatemethod(objIHDFCBank.WithDraw);
+                    objIHDFCBank.Insufficient(balance);
+                }
+                break;
+            case 2:
+                {
+                    Console.WriteLine("You choosen Deposit Amount. \n Please Enter Amount to Deposit");
+                    int dpbalance = Convert.ToInt32(Console.ReadLine());
+                    objIHDFCBank.ZeroBalance += new delegatemethod(objIHDFCBank.Deposit);
+                    objIHDFCBank.DepositMoney(dpbalance);
+                }
+                break;
+                default:
+                    break;
+
+                
+                Console.ReadKey();
+            }
+        }
+        public delegate void delegatemethod(int x);
+        public class Account
+        {
+            public int AccountNumber { get; set; }
+            public int CustomerName { get; set; }
+            public int Balance = 1000;
+            public int WithDrawAmount { get; set; }
+            public event delegatemethod UnderBalance;
+            public event delegatemethod ZeroBalance;
+            public void Insufficient(int x)
+            {
+                UnderBalance(x);
+            }
+            public void DepositMoney(int y)
+            {
+                ZeroBalance(y);
+            }
+            public void WithDraw(int x)
+            {
+                if (x < Balance && Balance != 0)
+                {
+                    Console.WriteLine("Congratulations!!! Transaction Successfull");
+                    Console.WriteLine("Remaining Balance is :" + (Balance - x));
+                }
+                else if (x > Balance && Balance >= -1001)
+                {
+                    Console.WriteLine("Transaction cannot be continued below specified limit of	Rs.-1000");
+                }
+                else
+                {
+                    Console.WriteLine("Zero Balance :" + Balance);
+                }
+            }
+            public void Deposit(int x)
+            {
+                Console.Write("Balance After Depositing: " + (Balance + x));
+            }
+        }
+       
+    }
+}
