@@ -1,6 +1,6 @@
 program 1:(Arrays)
 ........
-//Manju C# Assignment OOPS Arrays
+//Pavani C# Assignment OOPS Arrays
 using System;
 
 
@@ -181,7 +181,7 @@ namespace sample
 
 program 4:(stack)
 .........
-//C# assignment Manju
+//C# assignment Pavani
 using System;
 
 namespace StackOPerations
